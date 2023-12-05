@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-go@v2
         with:
         # versão do go
-          go-version: 1.15
+          go-version: 1.23
           # comando que será executado
       - run: go test
       - run: go run math.go
