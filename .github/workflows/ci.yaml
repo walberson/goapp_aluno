@@ -1,15 +1,22 @@
 name: ci-golang-workflow
-on: [push]
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   check-application:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.15,1.14]
     steps:
     # uses são actions que serão executadas
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
         # versão do go
-          go-version: 1.15
+          go-version: ${{matrix.go-version}}
           # comando que será executado
       - run: go test
       - run: go run math.go
